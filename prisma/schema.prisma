@@ -8,10 +8,10 @@ generator client {
 }
 
 // Configures the database connection.
-// Here, we're using SQLite, which stores the database in a simple file.
+// Here, we're using PostgreSQL as the database provider.
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 // --- Data Models ---
