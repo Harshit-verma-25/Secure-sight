@@ -1,0 +1,36 @@
+// This is your Prisma schema file.
+// It defines your database models and the relationships between them.
+
+// Specifies that the Prisma Client should be generated for JavaScript/TypeScript.
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/lib/prisma"
+}
+
+// Configures the database connection.
+// Here, we're using SQLite, which stores the database in a simple file.
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// --- Data Models ---
+model Camera {
+  id        String      @id @default(cuid())
+  name      String
+  location  String
+
+  incidents Incident[]
+}
+
+model Incident {
+  id           String   @id @default(cuid())
+  type         String
+  tsStart      DateTime
+  tsEnd        DateTime
+  thumbnailUrl String
+  resolved     Boolean  @default(false)
+
+  camera   Camera @relation(fields: [cameraId], references: [id])
+  cameraId String
+}
