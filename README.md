@@ -1,8 +1,17 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Secure Sight
 
-## Getting Started
+A comprehensive security camera management system
 
-First, run the development server:
+## Deployment Instructions
+
+###### 1. Clone the repository
+
+```
+git clone https://github.com/Harshit-verma-25/Secure-sight.git
+cd Secure-sight
+```
+
+###### 2. Install Dependencies
 
 ```bash
 npm run dev
@@ -14,23 +23,50 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+###### 3. Setup Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env` file in the root directory and add:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+DATABASE_URL=your_neon_postgres_connection_url
+```
 
-## Learn More
+###### 4. Generate Prisma client and push schema
 
-To learn more about Next.js, take a look at the following resources:
+```
+npx prisma generate
+npx prisma db push
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+###### 5. Seed the database
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+npx prisma db seed
+```
 
-## Deploy on Vercel
+###### 6. Run the development server
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Tech Decisions
+
+- Modern file-based routing with server actions and route handlers using `Next JS`
+- Used `Tailwind CSS` for utility-first CSS for rapid UI development.
+- Type-safe interaction with PostgreSQL (Neon DB).
+
+## Future Improvement
+
+1. Add authentication and role-based access control
+2. Implement real-time incident updates via WebSockets
+3. Implement better error and loading states
+4. Enable image/video previews and playback from thumbnails
+5. Optimize Lighthouse score for performance/accessibility
+
